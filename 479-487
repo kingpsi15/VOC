@@ -1,0 +1,11 @@
+const positive_flag = review_rating >= 4;
+const negative_flag = review_rating <= 3 && review_rating > 0;
+const sentiment = positive_flag ? 'positive' : 'negative';
+              
+const query = `
+  INSERT INTO feedback (
+    id, customer_name, customer_phone, customer_email, customer_id,
+    service_type, review_text, review_rating, issue_location,
+    sentiment, status, positive_flag, negative_flag, created_at
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+`; 

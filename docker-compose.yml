@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # Backend Service
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3001:3001"   # Expose port 3001 for backend
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=production
+      - OLLAMA_MICROSERVICE_URL=http://ollama-microservice:3002
+    depends_on:
+      - ollama-microservice
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"      # Expose port 80 for frontend
+    networks:
+      - app-network
+    environment:
+      - REACT_APP_API_URL=http://backend:3001  # Backend URL inside Docker network
+
+  # Ollama Microservice
+  ollama-microservice:
+    build:
+      context: ./ollama-microservice
+    ports:
+      - "3002:3002"
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=production
+      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_MODEL=mistral:7b-instruct
+    depends_on:
+      - ollama
+
+  # Ollama Service
+  ollama:
+    image: ollama/ollama:latest  # Use the Ollama image from Docker Hub
+    ports:
+      - "11434:11434"
+    networks:
+      - app-network
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  ollama_data:
+
+networks:
+  app-network:
+    driver: bridge

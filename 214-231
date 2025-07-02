@@ -1,0 +1,35 @@
+// Modify the feedback creation endpoint to include issue detection
+app.post('/api/feedback', async (req, res) => {
+  let connection;
+  try {
+    connection = await pool.getConnection();
+    await connection.beginTransaction();
+
+    const {
+      customer_name,
+      customer_phone,
+      customer_email,
+      customer_id,
+      service_type,
+      review_text,
+      review_rating,
+      issue_location,
+      contacted_bank_person,
+      status = 'new'
+    } = req.body;
+
+    // Generate a unique ID for the feedback
+    const feedbackId = 'fb_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+
+    // Calculate positive/negative flags based on rating
+    const positive_flag = review_rating >= 4;
+    const negative_flag = review_rating <= 3 && review_rating > 0;
+    const sentiment = positive_flag ? 'positive' : 'negative'; // Calculate sentiment based on rating
+
+    // ... rest of the function ...
+  } catch (error) {
+    // ... handle error ...
+  } finally {
+    // ... release connection ...
+  }
+}); 

@@ -1,0 +1,14 @@
+// Create feedback object matching database schema
+const feedbackData = {
+  customer_id: formData.customerId || null,
+  customer_name: formData.customerName,
+  customer_phone: formData.customerPhone || null,
+  customer_email: formData.customerEmail || null,
+  service_type: formData.serviceType as 'ATM' | 'OnlineBanking' | 'CoreBanking',
+  review_text: formData.reviewText,
+  review_rating: parseInt(formData.reviewRating),
+  issue_location: formData.issueLocation || null,
+  contacted_bank_person: formData.contactedBankPerson || null,
+  status: 'new' as const
+  // Remove sentiment field to let backend calculate it
+}; 

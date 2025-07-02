@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Bank Building Icon -->
+  <rect x="8" y="32" width="48" height="24" fill="#005B9F" />
+  <rect x="6" y="56" width="52" height="4" fill="#004785" />
+  <polygon points="32,8 4,28 60,28" fill="#005B9F" />
+  <rect x="28" y="28" width="8" height="4" fill="#004785" />
+  
+  <!-- Columns -->
+  <rect x="12" y="32" width="4" height="24" fill="#004785" />
+  <rect x="22" y="32" width="4" height="24" fill="#004785" />
+  <rect x="38" y="32" width="4" height="24" fill="#004785" />
+  <rect x="48" y="32" width="4" height="24" fill="#004785" />
+  
+  <!-- Steps -->
+  <rect x="16" y="56" width="32" height="2" fill="#003A6B" />
+</svg> 

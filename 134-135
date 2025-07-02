@@ -1,0 +1,5 @@
+// Skip positive feedback for issue detection
+if (feedback.positive_flag || feedback.sentiment === 'positive' || feedback.review_rating >= 4) {
+  console.log(`[Issue Detection] Skipping positive feedback ID: ${feedback.id}`);
+  return null;
+} 
